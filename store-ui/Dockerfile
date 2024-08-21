@@ -24,6 +24,10 @@ RUN npm install
 # Copy application code
 COPY . .
 
+
+ENV REACT_APP_PRODCUTS_URL_BASE=localhost
+ENV REACT_APP_CART_URL_BASE=localhost
+
 RUN npm run build
 
 FROM nginx:1.21.6-alpine
@@ -32,4 +36,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 ARG APP_BUILD_DIR=/src/app
 # SET default APP_BUILD_DIR path
 ARG APP_SERVE_DIR=/store-ui
+
+ENV REACT_APP_PRODCUTS_URL_BASE=localhost
+ENV REACT_APP_CART_URL_BASE=localhost
 COPY --from=build-step $APP_BUILD_DIR/build $APP_SERVE_DIR

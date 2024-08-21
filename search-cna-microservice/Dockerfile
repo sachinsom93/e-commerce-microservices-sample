@@ -2,5 +2,12 @@ FROM node:18-alpine
 WORKDIR /app
 COPY package.json .
 RUN npm install
+
+# Set env variables
+ENV ELASTIC_URL=http://host:port
+ENV ELASTIC_USER_NAME=ELASTIC_USER_NAME
+ENV ELASTIC_PASSWORD=ELASTIC_PASSWORD
+ENV ELASTIC_APIKEY=ELASTIC_APIKEY
+
 COPY . .
 CMD npm start
